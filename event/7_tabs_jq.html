@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    .tabs{ list-style:none; padding:0 }
+    .tabs a{
+      text-decoration:none;
+			color:#000;
+			padding:6px 12px;
+			display:inline-block;
+    }
+    .tabs>li{
+      float:left;
+      border-bottom:1px solid #000;
+    }
+    .tabs>.active{
+      border:1px solid #000;
+      border-bottom:0;
+    }
+  </style>
+ </head>
+ <body>
+		<h1>使用属性选择器实现标签页头的切换</h1>
+		<ul class="tabs">
+			<li class="active">
+        <a data-toggle="tab" href="#">十元套餐</a>
+      </li>
+			<li>
+        <a data-toggle="tab" href="#">二十元套餐</a>
+      </li>
+			<li>
+        <a data-toggle="tab" href="#">三十元套餐</a>
+      </li>
+    </ul>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+      //DOM 4步 事件委托3步
+      //1. 查找触发事件的元素
+      //本例中: 因为多个子元素a都需要能单击，所以应该用事件委托优化，事件应该只绑定在父元素上一份即可
+      $("ul.tabs")
+      //2. 绑定事件处理函数
+      //本例中: 单击触发变化/换成鼠标移入变化
+      .on("click","[data-toggle=tab]",function(){
+        //3. 查找要修改的元素
+        //本例中: 既改自己，又改别人
+        //4. 修改元素
+        //先给自己的爹加active class
+        $(this).parent()
+        //当前a  当前li     
+              .addClass("active") //本没有返回值
+        //默认返回.前的当前li的jquery对象
+        //再去掉自己的爹的所有兄弟的active class
+        //下一句刚好再次需要用到自己的爹
+        //于是就可以链式操作
+              .siblings()
+        //    除当前li之外的其它所有兄弟li
+              .removeClass("active")
+      })
+    </script>
+ </body>
+</html>

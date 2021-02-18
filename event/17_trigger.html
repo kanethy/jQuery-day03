@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <input id="kw"><button>百度一下</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //点百度一下按钮，获取文本框中的内容并执行搜索操作
+    $("button").click(function(){
+      var kw=$("#kw").val().trim();
+                            //复习js高级第二天
+      if(kw!==""){
+        console.log(`查找 ${kw} 相关的内容...`)
+      }
+    })
+
+    //希望在文本框上按下回车键，执行按钮的单击事件操作
+    //   键盘按键按下——屌丝可能按住不放！
+    //$("#kw").keydown(function(e){
+    //   键盘按键抬起
+    $("#kw").keyup(function(e){
+      //只希望本次按的是回车键时才执行查找操作
+      //e.keyCode属性保存着本次按键键盘号
+      //只希望当按的是回车键(13号)时，才执行后续操作
+      if(e.keyCode==13){
+        //$("button").trigger("click");
+        $("button").click();
+      }
+    })
+  </script>
+</body>
+
+</html>

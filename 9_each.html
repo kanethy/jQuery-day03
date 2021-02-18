@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  </style>
+</head>
+<body>
+
+<ul id="list">
+  <li>98</li>
+  <li>85</li>
+  <li>33</li>
+  <li>99</li>
+  <li>52</li>
+</ul>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  //回顾:forEach
+  var arr=["亮亮","然然","东东"];
+  arr.forEach(function(elem){
+    console.log(`${elem}-到!`)
+  })
+  //请给每个不足60分的成绩+10分，并将超过90分的成绩用绿色背景标识出来
+  $("#list>li").each(function(i, domElem){
+    //domElem是一个DOM家的元素对象，不是jq家孩子
+    //如果想用jq家简化版函数，得用$()包一下
+    var $domElem=$(domElem);
+    //如果当前元素的内容<60，就+10分
+    if($domElem.html()<60){
+      //先取出旧成绩转为整数
+      var score=parseInt($domElem.html())
+        //成绩  转换为整数         获取innerHTML内容
+      //成绩+10
+      score+=10;
+      //将新成绩放回当前元素内容中
+      $domElem.html(score);
+    }else if($domElem.html()>=90){
+      //否则如果当前元素的内容>=90，就背景变为绿色
+      $domElem.css("background-color","green")
+          //修改css属性 背景     色      绿色
+    }
+  })
+</script>
+</body>
+</html>

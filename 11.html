@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+          position: relative;
+        }
+        .score {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .score li {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #f00;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+      </style>
+</head>
+<body>
+    <img id="s1" src="img/star.png"><br />
+    <img id="s2" src="img/star.png"><br />
+    <img id="s3" src="img/star.png"><br />
+    <img id="s4" src="img/star.png"><br />
+    <br>
+    <hr>
+    <br>
+    <ul id="list">
+        <li>98</li>
+        <li>85</li>
+        <li>33</li>
+        <li>99</li>
+        <li>52</li>
+    </ul>
+    <br>
+    <hr>
+    <br>
+    <h3>请打分</h3>
+    <ul class="score">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+        $("#s1").click(function(){
+            var $this=$(this);
+            if($this.is(":animated")){
+                $this.stop()
+            }else{
+                $this.animate({
+                    left:300
+                },2000)
+            }
+        })
+        $("#s2").click(function(){
+            var $this=$(this);
+            if($this.is(":animated")){
+                $this.stop(true)
+            }else{
+                $this.animate({
+                    left:400
+                }).animate({
+                    top:200
+                },4000)
+            }
+        })
+        $("#s3").click(function(){
+            var $this=$(this);
+            if($this.is(":animated")){
+                $this.stop()
+            }else{
+                $this.animate({
+                    left:400,
+                    top:200
+                },4000)
+            }
+        })
+
+        $("#s4").click(function(){
+            $(this).animate({
+                width:256,
+                height:256
+            },2000,function(){
+                $(this).hide();
+            })
+        })
+
+        $("#list>li").each(function(i,domElem){
+            var $domElem=$(domElem);
+            if($domElem.html()<60){
+                $domElem.html(parseInt($domElem.html())+10);
+            }else if($domElem.html()>=90){
+                $domElem.css("background-color","green");
+            }
+            
+        })
+
+        $(".score>li").click(function(){
+            $this=$(this);
+            $this.css("background-color","yellow");
+            var i=$(".score>li").index($this);
+            
+            $(`.score>li:lt(${i})`).css("background-color","yellow");
+            $(`.score>li:gt(${i})`).css("background-color","#fff");
+
+        })
+    </script>
+</body>
+</html>

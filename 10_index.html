@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .score {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .score li {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 1px solid #f00;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h3>请打分</h3>
+<ul class="score">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+  //回顾:js中的index
+  var arr=["亮亮","然然","东东"];
+  //在数组arr中查找东东的下标位置
+  var i=arr.indexOf("东东")
+        //  位置 的
+  console.log(`东东在 ${i} 位置`)
+
+  //DOM 4步
+  //1. 查找触发事件的元素
+  //本例中: class为ul下的每个li都能点
+  $("ul>li")
+  //2. 绑定事件处理函数
+  .click(function(){
+    //获得当前点击的li
+    var $this=$(this);
+    //3. 查找要修改的元素
+    //4. 修改元素
+    //先将自己改为黄色
+    $this.css("background-color","yellow");
+    //  修改css属性 背景   颜色     黄色
+    //获得自己在所有li中的下标位置
+    // 在ul下的所有li中 找  当前li的位置
+    var i=$("ul>li").index($this);
+    //                位置
+    //alert(i);
+    //让<i位置的都变为黄色
+    $(`ul>li:lt(${i})`)
+          // less than
+          //   小  于
+      .css("background-color","yellow");
+    //让>i位置的都变为白色
+    $(`ul>li:gt(${i})`)
+          //greater than
+          //  大     于
+      .css("background-color","#fff")
+  })
+</script>
+</body>
+</html>

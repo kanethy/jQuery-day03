@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+		#d1 #d2 #d3 {
+			cursor: pointer
+		}
+
+		#d1 {
+			background-color: green;
+			position: relative;
+			width: 150px;
+			height: 150px;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		#d2 {
+			background-color: blue;
+			position: absolute;
+			top: 25px;
+			left: 25px;
+			width: 100px;
+			height: 100px;
+		}
+
+		#d3 {
+			background-color: red;
+			position: absolute;
+			top: 25px;
+			left: 25px;
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+		}
+	</style>
+</head>
+<body>
+    <div id="d1">
+		<div id="d2">
+			<div id="d3">
+			</div>
+		</div>
+    </div>
+
+    <input id="kw"><button>百度一下</button>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+        // $("#d1").mouseenter(function(){
+        //     console.log("进入d1");
+        // }).mouseleave(function(){
+        //     console.log("离开d1");
+        // })
+        $("#d1").hover(
+            function(){console.log("进入d1")},
+            function(){ console.log("离开d1")}
+        )
+        
+        $("button").click(function(){
+            var kw=$("#kw").val().trim();
+            if(kw!==""){
+                console.log(`查找${kw}的内容`)
+            }
+        })
+
+        $("#kw").keyup(function(e){
+            if(e.keyCode==13){
+                //$("button").trigger("click");
+                $("button").click();
+            }
+        })
+    </script>
+</body>
+</html>

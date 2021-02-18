@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+	<style>
+		#d1{
+			border:1px solid #aaa;
+			border-radius:6px;
+			background:#eee;
+			width:50px; height:50px;
+			position:absolute; top:120px; left:0;
+		}
+	</style>
+ </head>
+ <body>
+	<h1>animate</h1>
+	<button id="btn1">启动动画</button>
+	<div id="d1">abcd</div>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		$("#btn1").click(function(){
+			$("#d1").animate({
+				//测试支持哪些css属性
+				//width:300, //height
+				//opacity:0,
+				left:300, //top right bottom
+				//fontSize:32
+				//padding:60, //margin
+
+				//不支持哪些css属性
+				//backgroundColor:"red" //rgb(r,g,b)
+				//transform:`rotate(60deg)`//css中的函数调用语法
+			},2000)
+		})
+	</script>
+ </body>
+</html>
